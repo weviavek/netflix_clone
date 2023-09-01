@@ -8,3 +8,6 @@ class BottomNavigationBarColors {
   static Color selectedColor = Colors.white;
   static Color unselectedColor = Colors.grey;
 }
+
+const kColorGray = Colors.grey;
+const kColorBlack = Colors.black;
