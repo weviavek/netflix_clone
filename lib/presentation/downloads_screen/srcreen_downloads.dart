@@ -5,8 +5,10 @@ import 'package:netflix_clone/core/custom_space.dart';
 import 'package:netflix_clone/presentation/downloads_screen/widgets/app_bar.dart';
 import 'package:netflix_clone/presentation/downloads_screen/widgets/center_stack_images.dart';
 
+
 class DownloadsScreen extends StatelessWidget {
   const DownloadsScreen({super.key});
+  
 
   @override
   Widget build(BuildContext context) {
