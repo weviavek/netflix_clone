@@ -7,6 +7,7 @@ import 'package:netflix_clone/domain/core/end_points.dart';
 import 'package:netflix_clone/domain/core/movie_model.dart';
 import 'package:netflix_clone/domain/core/orgine.dart';
 import 'package:netflix_clone/presentation/home_screen/custom_widgets/custom_section.dart';
+import 'package:netflix_clone/presentation/home_screen/custom_widgets/trending_section.dart';
 
 import '../../infrastructure/api_details.dart';
 
@@ -42,7 +43,7 @@ class HomeScreen extends StatelessWidget {
               builder: (context, snapshot) =>
                   snapshot.connectionState == ConnectionState.done &&
                           snapshot.hasData
-                      ? CustomSection(
+                      ? TrendingSection(
                           currentList: snapshot.data!,
                           title: 'Trending Shows',
                         )

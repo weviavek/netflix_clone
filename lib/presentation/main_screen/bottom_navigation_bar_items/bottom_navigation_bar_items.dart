@@ -8,10 +8,6 @@ List<BottomNavigationBarItem> bottomNavigationBarItems = const [
       label: "New & Hot",
       tooltip: "New & Hot"),
   BottomNavigationBarItem(
-      icon: Icon(Icons.emoji_emotions_outlined),
-      label: "Fast Laugh",
-      tooltip: "Fast Laugh"),
-  BottomNavigationBarItem(
       icon: Icon(Icons.search_outlined), label: "Search", tooltip: "Search"),
   BottomNavigationBarItem(
       icon: Icon(Icons.download_outlined),

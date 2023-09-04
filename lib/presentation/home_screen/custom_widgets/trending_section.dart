@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:netflix_clone/core/appbar_text_style.dart';
 import 'package:netflix_clone/domain/core/movie_model.dart';
-import 'package:netflix_clone/presentation/home_screen/custom_widgets/custom_movie_card.dart';
+import 'package:netflix_clone/presentation/home_screen/custom_widgets/top_ten_tile.dart';
 
-class CustomSection extends StatelessWidget {
+class TrendingSection extends StatelessWidget {
   final List<Movie> currentList;
   final String title;
-  const CustomSection(
+  const TrendingSection(
       {super.key, required this.currentList, required this.title});
 
   @override
@@ -22,9 +22,11 @@ class CustomSection extends StatelessWidget {
       SizedBox(
         height: 220,
         child: ListView.builder(
-          itemBuilder: (context, index) =>
-              CustomMovieCard(currentMovie: currentList[index]),
-          itemCount: currentList.length,
+          itemBuilder: (context, index) => TopTenTile(
+            currentMovie: currentList[index],
+            index: index + 1,
+          ),
+          itemCount: 10,
           scrollDirection: Axis.horizontal,
         ),
       ),
