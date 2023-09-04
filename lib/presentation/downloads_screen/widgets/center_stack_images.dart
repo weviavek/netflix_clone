@@ -46,7 +46,7 @@ class CenterStackImages extends StatelessWidget {
                       child: CustomImageTile(
                         size: 1,
                         angle: 15 * pi / 180,
-                        imageURL: movieList.data![2].posterPath,
+                        imageURL: movieList.data![2].posterPath!=null?movieList.data![2].posterPath!:'/xVMtv55caCEvBaV83DofmuZybmI.jpg',
                         paddingLeft: 150,
                         paddingRight: 0,
                       ),
@@ -56,7 +56,7 @@ class CenterStackImages extends StatelessWidget {
                       child: CustomImageTile(
                         size: 1,
                         angle: -15 * pi / 180,
-                        imageURL: movieList.data![1].posterPath,
+                        imageURL: movieList.data![1].posterPath!=null?movieList.data![1].posterPath!:'/xVMtv55caCEvBaV83DofmuZybmI.jpg',
                         paddingLeft: 0,
                         paddingRight: 150,
                       ),
@@ -64,7 +64,7 @@ class CenterStackImages extends StatelessWidget {
                     CustomImageTile(
                       size: 1.15,
                       angle: 0 * pi / 180,
-                      imageURL: movieList.data![0].posterPath,
+                      imageURL:movieList.data![0].posterPath!=null?movieList.data![0].posterPath!:'/xVMtv55caCEvBaV83DofmuZybmI.jpg',
                       paddingLeft: 0,
                       paddingRight: 0,
                     )
