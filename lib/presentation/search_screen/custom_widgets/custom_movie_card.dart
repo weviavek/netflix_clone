@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:netflix_clone/domain/core/movie_model.dart';
+import 'package:netflix_clone/presentation/movie_details/movie_details.dart';
 
 class CustomMovieCard extends StatelessWidget {
   final Movie currentMovie;
@@ -15,7 +16,10 @@ class CustomMovieCard extends StatelessWidget {
         height: 220,
         width: 150,
         child: InkWell(
-          onTap: () {},
+          onTap: () {Navigator.of(context).push(MaterialPageRoute(
+                builder: (context) =>
+                    MovieDetailsPage(currentMovie: currentMovie),
+              ));},
           child: SizedBox(
             width: width * 0.3,
             child: ClipRRect(

@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:netflix_clone/domain/core/movie_model.dart';
+import 'package:netflix_clone/presentation/movie_details/movie_details.dart';
 
 class CustomMovieCard extends StatelessWidget {
   final Movie currentMovie;
-  const CustomMovieCard(
-      {super.key, required this.currentMovie});
+  const CustomMovieCard({super.key, required this.currentMovie});
 
   @override
   Widget build(BuildContext context) {
@@ -12,7 +12,12 @@ class CustomMovieCard extends StatelessWidget {
     return Padding(
         padding: const EdgeInsets.all(5.0),
         child: InkWell(
-            onTap: () {},
+            onTap: () {
+              Navigator.of(context).push(MaterialPageRoute(
+                builder: (context) =>
+                    MovieDetailsPage(currentMovie: currentMovie),
+              ));
+            },
             child: Column(
               children: [
                 SizedBox(

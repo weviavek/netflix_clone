@@ -8,6 +8,7 @@ import 'package:netflix_clone/domain/core/end_points.dart';
 import 'package:netflix_clone/domain/core/movie_model.dart';
 import 'package:netflix_clone/domain/core/orgine.dart';
 import 'package:netflix_clone/infrastructure/api_details.dart';
+import 'package:netflix_clone/presentation/search_screen/custom_widgets/result_tile.dart';
 
 import 'custom_widgets/custom_movie_card.dart';
 
@@ -50,19 +51,28 @@ class SearchResult extends StatelessWidget {
             builder: (context, snapshot) {
               if (snapshot.connectionState == ConnectionState.done &&
                   snapshot.data!.isNotEmpty) {
-                return Expanded(
-                    child: GridView.count(
-                  childAspectRatio: 2.0 / 3.0,
-                  crossAxisCount: 3,
-                  children: List.generate(
-                      snapshot.data!.length,
-                      (index) => SizedBox(
-                          height: 220,
-                          child: CustomMovieCard(
-                              currentMovie: snapshot.data![index]))),
-                ));
+                return query == ''
+                    ? Expanded(
+                        child: GridView.count(
+                        childAspectRatio: 2.0 / 3.0,
+                        crossAxisCount: 3,
+                        children: List.generate(
+                            snapshot.data!.length,
+                            (index) => SizedBox(
+                                height: 220,
+                                child: CustomMovieCard(
+                                    currentMovie: snapshot.data![index]))),
+                      ))
+                    : Expanded(
+                      child: ListView.separated(
+                          itemCount: snapshot.data!.length,
+                          itemBuilder: (context, index) =>
+                              ResultTile(currentMovie: snapshot.data![index]),
+                          separatorBuilder: (context, index) => const Divider(),
+                        ),
+                    );
               } else {
-                return const CircularProgressIndicator();
+                return const SizedBox();
               }
             },
           );

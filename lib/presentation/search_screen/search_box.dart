@@ -8,20 +8,16 @@ class SearchBox extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     TextEditingController queryContoller = TextEditingController();
-    return Row(
-
-      children: [
-        const Icon(Icons.search),
-        Flexible(
-          child: TextField(
-            controller: queryContoller,
-            onChanged: (currentQuery) {
-              query = currentQuery;
-              searchNotifier.value = currentQuery;
-            },
-          ),
-        )
-      ],
+    return TextField(
+      decoration:const InputDecoration(
+          prefixIcon: Icon(Icons.search_outlined),
+          prefixIconColor: Colors.grey,
+          hintText: 'Search Movies, TV Shows & more'),
+      controller: queryContoller,
+      onChanged: (currentQuery) {
+        query = currentQuery;
+        searchNotifier.value = currentQuery;
+      },
     );
   }
 }

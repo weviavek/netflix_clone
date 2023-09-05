@@ -8,21 +8,26 @@ class CustomAppBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: Row(
-        children: [
-          widthSmall,
-          Text(
-            title,
-            style: appBarTextStyle,
+    return Column(
+      children: [
+        Center(
+          child: Row(
+            children: [
+              widthSmall,
+              Text(
+                title,
+                style: appBarTextStyle,
+              ),
+              const Spacer(),
+              const Icon(Icons.cast),
+              widthSmall,
+              const Icon(Icons.more_vert),
+              widthSmall,
+            ],
           ),
-          const Spacer(),
-          const Icon(Icons.cast),
-          widthSmall,
-          const Icon(Icons.more_vert),
-          widthSmall
-        ],
-      ),
+        ),
+        
+      ],
     );
   }
 }

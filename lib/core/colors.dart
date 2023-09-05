@@ -11,3 +11,5 @@ class BottomNavigationBarColors {
 
 const kColorGray = Colors.grey;
 const kColorBlack = Colors.black;
+
+const kColorWhite = Colors.white;
