@@ -12,9 +12,6 @@ class CenterStackImages extends StatelessWidget {
   final double width;
   const CenterStackImages({super.key, required this.width});
   Future<List<Movie>> getMovies() async {
-    // TMDB tmdb = TMDB(ApiKeys(apiKey, accessToken),
-    //     logConfig: const ConfigLogger(showLogs: true, showErrorLogs: true));
-    // Map trending = await tmdb.v3.trending.getTrending();
     final temp = await get(
         Uri.parse(
             'https://api.themoviedb.org/3/movie/popular?api_key=43079de59c035221053375c5e5d110f8'),

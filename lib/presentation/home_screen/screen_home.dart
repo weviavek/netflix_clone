@@ -1,3 +1,5 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'dart:convert';
 import 'dart:io';
 
@@ -7,6 +9,7 @@ import 'package:http/http.dart';
 import 'package:netflix_clone/domain/core/end_points.dart';
 import 'package:netflix_clone/domain/core/movie_model.dart';
 import 'package:netflix_clone/domain/core/orgine.dart';
+import 'package:netflix_clone/presentation/dialogs/erroe_dialog.dart';
 import 'package:netflix_clone/presentation/home_screen/custom_widgets/custom_section.dart';
 import 'package:netflix_clone/presentation/home_screen/custom_widgets/trending_section.dart';
 import 'package:netflix_clone/presentation/home_screen/main_banner/main_banner.dart';
@@ -17,7 +20,7 @@ import 'custom_app_bar/home_screen_app_bar.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
-  Future<List<Movie>> getTopMovies(String currentEndPoint) async {
+  Future<List<Movie>> getTopMovies(String currentEndPoint,BuildContext context) async {
     final response = await get(
         Uri.parse('$orgineSite$currentEndPoint?api_key=$apiKey'),
         headers: {HttpHeaders.authorizationHeader: accessToken});
@@ -25,6 +28,9 @@ class HomeScreen extends StatelessWidget {
         .decode(response.body)['results']
         .map<Movie>((json) => Movie.fromJson(json))
         .toList();
+    if (response.statusCode != 200&&!showingDialog) {
+      showErrorDialog(context);
+    }
     return movieList;
   }
 
@@ -46,7 +52,7 @@ class HomeScreen extends StatelessWidget {
             children: [
               const MainScreenBanner(),
               FutureBuilder(
-                  future: getTopMovies(topMovies),
+                  future: getTopMovies(topMovies,context),
                   builder: (context, snapshot) =>
                       snapshot.connectionState == ConnectionState.done
                           ? CustomSection(
@@ -55,7 +61,7 @@ class HomeScreen extends StatelessWidget {
                             )
                           : const SizedBox()),
               FutureBuilder(
-                  future: getTopMovies(trendingMovies),
+                  future: getTopMovies(trendingMovies,context),
                   builder: (context, snapshot) =>
                       snapshot.connectionState == ConnectionState.done &&
                               snapshot.hasData
@@ -65,7 +71,7 @@ class HomeScreen extends StatelessWidget {
                             )
                           : const SizedBox()),
               FutureBuilder(
-                  future: getTopMovies(popularMovies),
+                  future: getTopMovies(popularMovies,context),
                   builder: (context, snapshot) =>
                       snapshot.connectionState == ConnectionState.done
                           ? CustomSection(
@@ -74,7 +80,7 @@ class HomeScreen extends StatelessWidget {
                             )
                           : const SizedBox()),
               FutureBuilder(
-                  future: getTopMovies(upcomingMovies),
+                  future: getTopMovies(upcomingMovies,context),
                   builder: (context, snapshot) =>
                       snapshot.connectionState == ConnectionState.done
                           ? CustomSection(
